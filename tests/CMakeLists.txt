@@ -9,7 +9,7 @@ file(GLOB SOURCES *.cpp)
 
 find_package(GTest CONFIG REQUIRED) 
 
-target_link_libraries(${PROJECT_NAME} gcovr)
+# target_link_libraries(${PROJECT_NAME} gcovr)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${VIEW_COMPOSITION_INCLUDE_DIRS})

@@ -128,7 +128,7 @@ char* read_string_from_file(FILE* fp) {
 
 int check_end_file(FILE* fp) {
   char c = fgetc(fp);
-  if (c == '{') {
+  if (c == '[') {
     return 0;
   } else {
     while (fgetc(fp) != '}') continue;

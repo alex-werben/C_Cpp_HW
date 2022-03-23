@@ -67,7 +67,7 @@ int read_data_from_file(char * author) {
       delete_v(element);
       return 1;
     }
-
+    
     if (!strcmp(author, element->author)) {
       if (!strcmp(element->author, element->performer)) {
         printf("Song title: %s\n", element->title);
