@@ -18,3 +18,12 @@ test:
 
 search:
 	find ./ -type f -iname '*.gcda'
+
+gcovr:
+	rm -rf gcovr_report; mkdir gcovr_report; gcovr -r . --html --html-details -o gcovr_report/coverage.html
+
+lcov:
+	lcov -t "build/tests/test" -o coverage.info -c -d build/string_io; genhtml -o lcov_report coverage.info
+
+format:
+	clang-format 
