@@ -29,10 +29,10 @@ jobs:
       - name: Install gtest
         uses: MarkusJx/googletest-installer@v1.1
       - name: Configure gtest
-        run: |
-          sudo cp googletest/build/lib/*.a /usr/lib
-          sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
-          sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-          sudo cp -R googletest/googletest/include/gtest /usr/include
+        run: cd /usr/lib && ls
+          # sudo cp googletest/build/lib/*.a /usr/lib
+          # sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
+          # sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+          # sudo cp -R googletest/googletest/include/gtest /usr/include
       - name: make build
         run: make build
