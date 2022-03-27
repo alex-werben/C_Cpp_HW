@@ -27,6 +27,13 @@
 #       - run: make test
 on: push
 jobs:
+  message:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "hw-1"
+      - run: make message
   check:
     runs-on: ubuntu-latest
     steps:

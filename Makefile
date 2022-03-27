@@ -27,3 +27,6 @@ lcov:
 
 format:
 	clang-format 
+
+message:
+	echo "CI works fine"
