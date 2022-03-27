@@ -1,12 +1,12 @@
 # on: push
 
 # jobs:
-#   check:
-#     runs-on: ubuntu-latest
-#     container: leshiy1295/gcc_linters
-#     steps:
-#       - uses: actions/checkout@v2
-#       - run: make check
+  check:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check
 #   build:
 #     runs-on: ubuntu-latest
 #     container: leshiy1295/gcc_linters
@@ -36,6 +36,7 @@ jobs:
       - run: make message
   check:
     runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters
     steps:
       - uses: actions/checkout@v2
         with:
