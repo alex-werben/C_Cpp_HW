@@ -16,6 +16,9 @@ run:
 test:
 	./build/tests/test
 
+CI_test:
+	build/tests/test
+
 search:
 	find ./ -type f -iname '*.gcda'
 
