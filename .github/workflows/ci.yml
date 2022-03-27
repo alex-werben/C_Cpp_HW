@@ -27,7 +27,7 @@ jobs:
         with:
           ref: "hw-1"
       # - run: cd /usr/lib && ls
-      - run: cd /usr/src/gtest && ls
+      # - run: cd /usr/src/gtest && ls
       - run: cd /usr/src/ && ls
       - name: Install gtest
         uses: MarkusJx/googletest-installer@v1.1
