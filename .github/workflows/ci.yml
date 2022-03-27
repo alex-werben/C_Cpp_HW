@@ -28,8 +28,9 @@ jobs:
           ref: "hw-1"
       # - name: Install gtest
       #   uses: MarkusJx/googletest-installer@v1.1
-      - name: Install GTest manually
-        run: sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && cd /usr/src/gtest/lib && sudo cp *.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+      - run: mkdir gtest && cd gtest && git clone https://github.com/google/googletest.git && cd googletest && cmake -B build && cmake --build build && cmake --install build
+      # - name: Install GTest manually
+      #   run: sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && cd /usr/src/gtest/lib && sudo cp *.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
       - run: cd /usr/include && ls
       - name: make message
         run: make message
