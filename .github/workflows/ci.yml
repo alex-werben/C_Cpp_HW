@@ -14,8 +14,6 @@ jobs:
         with:
           ref: "hw-1"
       # - name: install cpplint
-      # run: 
+      - run: apt install cpplint
       # - name: make check
-      - run: |
-        apt install cpplint
-        make check
+      - run: make check
