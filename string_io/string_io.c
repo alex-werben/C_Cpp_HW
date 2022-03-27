@@ -1,6 +1,7 @@
 // Copyright 2022 alex_werben
 #include <stdio.h>
 #include <string.h>
+// #include <bsd/string.h>
 #include <stdlib.h>
 #include "string_io.h"
 
@@ -43,8 +44,7 @@ char* read_string_from_stdin() {
         return NULL;
       }
       if (str) {
-        strcpy(tmp, str);
-        // strlcpy(tmp, str, str_size);
+        strlcpy(tmp, str, str_size);
         free(str);
       }
       str = tmp;
@@ -109,8 +109,7 @@ char* read_string_from_file(FILE* fp) {
         return NULL;
       }
       if (str) {
-        strcpy(tmp, str);
-        // strlcpy(tmp, str, str_size);
+        strlcpy(tmp, str, str_size);
         free(str);
       }
       str = tmp;
