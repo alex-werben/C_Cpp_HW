@@ -26,9 +26,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "hw-1"
-
-      # - name: Install gtest
-      #   uses: MarkusJx/googletest-installer@v1.1
+      - run: ls
+      - name: Install gtest
+        uses: MarkusJx/googletest-installer@v1.1
       - run: ls
       # - name: Configure gtest
       #   run: |
