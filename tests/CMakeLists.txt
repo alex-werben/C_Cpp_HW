@@ -5,6 +5,11 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fprofile-arcs -ftest-coverage -O0")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage")
 
+if (DEFINED ENV{GITHUB_ACTIONS})
+  link_directories("/usr/lib")
+  include_directories("/usr/include")
+endif ()
+
 file(GLOB SOURCES *.cpp)
 
 find_package(GTest CONFIG REQUIRED) 
