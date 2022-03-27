@@ -29,8 +29,8 @@ jobs:
       # - name: Install gtest
       #   uses: MarkusJx/googletest-installer@v1.1
       - run: cd /usr/lib && ls
-      - run: sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
-      - run: cd /usr/lib && ls
+      - run: sudo apt-get install -y libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make 
+      - run: cd /usr/src/gtest && ls
       - name: Configure gtest
         run: |
           sudo cp googletest/build/lib/*.a /usr/lib
