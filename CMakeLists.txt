@@ -1,13 +1,22 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(main)
 
-# list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+if (DEFINED ENV{GITHUB_ACTIONS})
+  if (WIN32)
+    link_directories("D:/gtest/lib")
+    include_directories("D:/gtest/include")
+
+    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
+    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
+  elseif (APPLE)
+    link_directories("/usr/local/lib")
+    include_directories("/usr/local/include")
+  endif ()
+endif ()
+
 include(CodeCoverage)
-# setup_target_for_coverage(${PROJECT_NAME}_coverage test coverage)
-# target_link_libraries(${PROJECT_TEST_NAME} gcov)
 
 add_executable(${PROJECT_NAME} src/main.c)
 
