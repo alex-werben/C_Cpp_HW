@@ -3,9 +3,6 @@ project(main)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake) # для использования gcovr lcov gcov
 
-link_directories("/usr/lib")
-include_directories("/usr/include")
-
 include(CodeCoverage)
 
 add_executable(${PROJECT_NAME} src/main.c)
