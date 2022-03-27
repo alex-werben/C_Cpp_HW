@@ -43,7 +43,8 @@ char* read_string_from_stdin() {
         return NULL;
       }
       if (str) {
-        strlcpy(tmp, str, str_size);
+        strcpy(tmp, str);
+        // strlcpy(tmp, str, str_size);
         free(str);
       }
       str = tmp;
@@ -108,7 +109,8 @@ char* read_string_from_file(FILE* fp) {
         return NULL;
       }
       if (str) {
-        strlcpy(tmp, str, str_size);
+        strcpy(tmp, str);
+        // strlcpy(tmp, str, str_size);
         free(str);
       }
       str = tmp;
