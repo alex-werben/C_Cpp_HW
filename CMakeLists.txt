@@ -4,16 +4,8 @@ project(main)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 if (DEFINED ENV{GITHUB_ACTIONS})
-  if (WIN32)
-    link_directories("D:/gtest/lib")
-    include_directories("D:/gtest/include")
-
-    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
-    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
-  elseif (APPLE)
-    link_directories("/usr/local/lib")
-    include_directories("/usr/local/include")
-  endif ()
+  link_directories("/usr/lib")
+  include_directories("/usr/include")
 endif ()
 
 include(CodeCoverage)
