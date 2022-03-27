@@ -26,10 +26,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "hw-1"
-      - run: ls
+      - run: cd /usr/lib && ls
       - name: Install gtest
         uses: MarkusJx/googletest-installer@v1.1
-      - run: cd googletest/build/lib && ls
+      - run: cd /usr/lib && ls
       - name: Configure gtest
         run: |
           sudo cp googletest/build/lib/*.a /usr/lib
