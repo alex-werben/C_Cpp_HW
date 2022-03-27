@@ -10,7 +10,6 @@ jobs:
       - run: make message
   check:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters
     steps:
       - uses: actions/checkout@v2
       - name: install cpplint
