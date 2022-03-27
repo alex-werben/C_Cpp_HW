@@ -28,18 +28,12 @@ jobs:
           ref: "hw-1"
       # - name: Install gtest
       #   uses: MarkusJx/googletest-installer@v1.1
-      - run: sudo apt-get install -y libgtest-dev
-      - run: cd /usr/src/gtest 
-      - run: sudo cmake CMakeLists.txt
-      - run: sudo make 
-      - run: sudo cp *.a /usr/lib
-      - run: sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
-      - run: sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-      # - name: Configure gtest
-      #   run: |
-      #     sudo cp googletest/build/lib/*.a /usr/lib
-      #     sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
-      #     sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-      #     sudo cp -R googletest/googletest/include/gtest /usr/include
+      - run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp *.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+      - name: Configure gtest
+        run: |
+          sudo cp googletest/build/lib/*.a /usr/lib
+          sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
+          sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+          sudo cp -R googletest/googletest/include/gtest /usr/include
       - name: make build
         run: make build
