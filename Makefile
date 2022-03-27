@@ -17,7 +17,7 @@ test:
 	./build/tests/test
 
 CI_test:
-	build/tests/test
+	/home/runner/work/C_Cpp_HW/C_Cpp_HW/build/tests/test
 
 search:
 	find ./ -type f -iname '*.gcda'
