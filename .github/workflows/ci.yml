@@ -19,7 +19,7 @@ jobs:
         run: make check
   build:
     runs-on: ubuntu-latest
-    # needs: [check]
+    needs: [check]
     steps:
       - name: Fetch
         uses: actions/checkout@v2
@@ -27,8 +27,8 @@ jobs:
           ref: "hw-1"
       - name: Install GTest
         run: mkdir gtest && cd gtest && git clone https://github.com/google/googletest.git && cd googletest && cmake -B build && cmake --build build && sudo cmake --install build
-      - name: Install BSD support for Linux
-        run: sudo apt-get install libbsd-dev
+      # - name: Install BSD support for Linux
+      #   run: sudo apt-get install libbsd-dev
       - name: Make build
         run: make build
   test:

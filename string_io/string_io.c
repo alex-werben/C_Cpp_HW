@@ -1,7 +1,6 @@
 // Copyright 2022 alex_werben
 #include <stdio.h>
 #include <string.h>
-// #include <bsd/string.h>
 #include <stdlib.h>
 #include "string_io.h"
 
