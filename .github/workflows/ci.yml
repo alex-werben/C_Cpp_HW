@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           ref: "hw-1"
-      - run: pip install cpplint
+      - name: install cpplint
+        run: pip install cpplint
       - run: sudo apt-get install libbsd-dev
       - run: sudo apt-get install clang-tidy
       - run: sudo apt-get install cppcheck
