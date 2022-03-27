@@ -3,10 +3,8 @@ project(main)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-if (DEFINED ENV{GITHUB_ACTIONS})
-  link_directories("/usr/lib")
-  include_directories("/usr/include")
-endif ()
+link_directories("/usr/lib")
+include_directories("/usr/include")
 
 include(CodeCoverage)
 
