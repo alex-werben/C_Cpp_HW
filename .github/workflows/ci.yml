@@ -63,6 +63,9 @@ jobs:
           name: my-build
           path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/
       - run: ls
+      - run: |
+          cd build
+          ls
       - name: Make CI_test
         run: make CI_test
       - name: Get gcovr
