@@ -47,15 +47,19 @@ jobs:
           path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
       - name: Make test
         run: make test
-      - name: Make gcovr
+      - name: Run ls
         run: ls
       - name: Make gcov
         run: gcov build/string_io/CMakeFiles/string_io.dir/string_io.c.gcno
+      - name: Run ls
+        run: ls
+      - name: Find .gcov files
+        run: find ./ -type f -iname '*.gcov'
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
           files: |
-            /home/runner/work/C_Cpp_HW/C_Cpp_HW/*.gcov
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/string_io.c.gcov
   test:
     runs-on: ubuntu-latest
     needs: [build]
