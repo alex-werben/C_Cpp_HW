@@ -60,29 +60,29 @@ jobs:
         with:
           files: |
             /home/runner/work/C_Cpp_HW/C_Cpp_HW/string_io.c.gcov
-  test:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Install GTest
-        run: |
-          mkdir gtest 
-          cd gtest
-          git clone https://github.com/google/googletest.git 
-          cd googletest 
-          cmake -B build 
-          cmake --build build 
-          sudo cmake --install build
-      - name: Get artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: [build]
+  #   steps:
+  #     - name: Install GTest
+  #       run: |
+  #         mkdir gtest 
+  #         cd gtest
+  #         git clone https://github.com/google/googletest.git 
+  #         cd googletest 
+  #         cmake -B build 
+  #         cmake --build build 
+  #         sudo cmake --install build
+  #     - name: Get artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: my-test
+  #         path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
 
-      - name: Make test
-        run: |
-          sudo ./build/tests/test
-      - name: Get gcovr
-        run: make gcovr
-      - name: Get lcov
-        run: make lcov
+  #     - name: Make test
+  #       run: |
+  #         sudo ./build/tests/test
+  #     - name: Get gcovr
+  #       run: make gcovr
+  #     - name: Get lcov
+  #       run: make lcov
