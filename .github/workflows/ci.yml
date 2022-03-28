@@ -66,6 +66,7 @@ jobs:
         uses: actions/download-artifact@v2
         with: 
           name: my-gtest
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
       - run: ls -R
       - name: Make CI_test
         run: |
