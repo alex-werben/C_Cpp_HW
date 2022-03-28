@@ -4,3 +4,4 @@ Dockerfile
 lcov_report/
 gcovr_report/
 coverage.info
+string_io.c.gcov
