@@ -40,12 +40,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
-      - name: Upload gtest artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-gtest
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/
+      # - name: Upload gtest artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: my-gtest
+      #     path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
       - run: ls
       - run: make test
   test:
@@ -60,17 +60,17 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/
-      - run: ls
-      - name: Get gtest
-        uses: actions/download-artifact@v2
-        with: 
-          name: my-gtest
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
-      - run: ls -R
-      - name: Make CI_test
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/
+      # - run: ls
+      # - name: Get gtest
+      #   uses: actions/download-artifact@v2
+      #   with: 
+      #     name: my-gtest
+      #     path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
+      # - run: ls -R
+      - name: Make test
         run: |
-          sudo ./build/tests/test
+          sudo make test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
