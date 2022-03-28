@@ -26,14 +26,21 @@ jobs:
         with:
           ref: "hw-1"
       - name: Install GTest
-        run: mkdir gtest && cd gtest && git clone https://github.com/google/googletest.git && cd googletest && cmake -B build && cmake --build build && sudo cmake --install build
+        run: |
+          mkdir gtest 
+          cd gtest
+          git clone https://github.com/google/googletest.git 
+          cd googletest 
+          cmake -B build 
+          cmake --build build 
+          sudo cmake --install build
       - name: Make build
         run: make build
       - run: ls
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: /build/
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/
       - run: ls
   test:
     runs-on: ubuntu-latest
