@@ -65,7 +65,7 @@ jobs:
       #     pwd
       - name: Make CI_test
         run: |
-          ./test
+          sudo ./test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
