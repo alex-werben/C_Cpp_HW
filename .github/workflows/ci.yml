@@ -66,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v2
         with: 
           name: my-gtest
-      - run: ls
+      - run: ls -R
       - name: Make CI_test
         run: |
           sudo ./build/tests/test
