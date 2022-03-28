@@ -64,10 +64,13 @@ jobs:
           path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/
       - run: ls
       - run: |
-          cd build
+          cd build/tests
           ls
+          pwd
       - name: Make CI_test
-        run: make CI_test
+        run: |
+          pwd
+          make CI_test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
