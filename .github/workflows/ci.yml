@@ -54,7 +54,10 @@ jobs:
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
-          files: ./build/**/**/**/*.gcda
+          files: |
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/view_composition/CMakeFiles/view_composition.dir/*.gcda
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/view_composition/CMakeFiles/view_composition.dir/*.gcno
+          # ./build/**/**/**/*.gcda
   test:
     runs-on: ubuntu-latest
     needs: [build]
