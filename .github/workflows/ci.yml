@@ -69,7 +69,7 @@ jobs:
       - run: ls
       - name: Make CI_test
         run: |
-          ./build/tests/test
+          sudo ./build/tests/test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
