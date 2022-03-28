@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/alexwerben/C_Cpp_HW/branch/hw-1/graph/badge.svg)]
+![codecov](https://codecov.io/gh/alexwerben/C_Cpp_HW/branch/hw-1/graph/badge.svg)
 
 # ФИО
 
