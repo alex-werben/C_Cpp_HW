@@ -34,6 +34,10 @@ jobs:
           cmake -B build 
           cmake --build build 
           sudo cmake --install build
+      - name: Install gcovr, lcov
+        run: |
+          sudo apt-get install gcovr
+          sudo apt-get install lcov
       - name: Make build
         run: make build
       - name: Upload artifact
@@ -69,13 +73,7 @@ jobs:
         with:
           name: my-test
           path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
-      # - run: ls
-      # - name: Get gtest
-      #   uses: actions/download-artifact@v2
-      #   with: 
-      #     name: my-gtest
-      #     path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
-      # - run: ls -R
+
       - name: Make test
         run: |
           sudo ./build/tests/test
