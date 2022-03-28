@@ -27,8 +27,6 @@ jobs:
           ref: "hw-1"
       - name: Install GTest
         run: mkdir gtest && cd gtest && git clone https://github.com/google/googletest.git && cd googletest && cmake -B build && cmake --build build && sudo cmake --install build
-      # - name: Install BSD support for Linux
-      #   run: sudo apt-get install libbsd-dev
       - name: Make build
         run: make build
       - run: cd /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/tests && ls
@@ -37,7 +35,7 @@ jobs:
     needs: [build]
     steps:
       - name: Fetch
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           ref: "hw-1"
       - name: Make CI_test
