@@ -19,7 +19,7 @@ jobs:
         run: make check
   build:
     runs-on: ubuntu-latest
-    # needs: [check]
+    needs: [check]
     steps:
       - name: Fetch
         uses: actions/checkout@v2
@@ -41,21 +41,20 @@ jobs:
         with:
           name: my-test
           path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
-      # - name: Upload gtest artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-gtest
-      #     path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/gtest
-      - run: ls
-      - run: make test
+      - name: Make test
+        run: make test
+      - name: Make gcovr
+        run: make gcovr
+      - name: Make lcov
+        run: make lcov
+      - name: Upload
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./build/**/**/**/*.gcda
   test:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - run: ls
-      # - name: Create build directory
-      #   run: mkdir build
-      # - run: ls
       - name: Install GTest
         run: |
           mkdir gtest 

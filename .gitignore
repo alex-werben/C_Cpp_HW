@@ -1,2 +1,6 @@
 build/
 .vscode/
+Dockerfile
+lcov_report/
+gcovr_report/
+coverage.info
