@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
       # - name: Upload gtest artifact
       #   uses: actions/upload-artifact@v2
       #   with:
@@ -56,11 +56,20 @@ jobs:
       # - name: Create build directory
       #   run: mkdir build
       # - run: ls
+      - name: Install GTest
+        run: |
+          mkdir gtest 
+          cd gtest
+          git clone https://github.com/google/googletest.git 
+          cd googletest 
+          cmake -B build 
+          cmake --build build 
+          sudo cmake --install build
       - name: Get artifact
         uses: actions/download-artifact@v2
         with:
           name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
       # - run: ls
       # - name: Get gtest
       #   uses: actions/download-artifact@v2
