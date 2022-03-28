@@ -48,14 +48,14 @@ jobs:
     needs: [build]
     steps:
       - run: ls
-      - name: Get artifact
-        uses: actions/download-artefact@v2
-        with:
-          name: my-build
       - name: Fetch
         uses: actions/checkout@v2
         with:
           ref: "hw-1"
+      - name: Get artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-build
       - run: ls
       - name: Make CI_test
         run: make CI_test
