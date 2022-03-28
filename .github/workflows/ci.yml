@@ -40,11 +40,11 @@ jobs:
           sudo apt-get install lcov
       - name: Make build
         run: make build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: my-test
+      #     path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
       - name: Make test
         run: make test
       - name: Run ls
