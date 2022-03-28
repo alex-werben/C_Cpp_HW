@@ -70,7 +70,7 @@ jobs:
       # - run: ls -R
       - name: Make test
         run: |
-          sudo make test
+          sudo ./build/tests/test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
