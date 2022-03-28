@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-test
-          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/tests/test
+          path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build
       - name: Upload gtest artifact
         uses: actions/upload-artifact@v2
         with:
@@ -53,11 +53,6 @@ jobs:
     needs: [build]
     steps:
       - run: ls
-      - name: Fetch
-        uses: actions/checkout@v2
-        with:
-          ref: "hw-1"
-      - run: ls
       # - name: Create build directory
       #   run: mkdir build
       # - run: ls
@@ -67,17 +62,14 @@ jobs:
           name: my-test
           # path: /home/runner/work/C_Cpp_HW/C_Cpp_HW/build/
       - run: ls
-      # - run: |
-      #     cd build/tests
-      #     ls
-      #     pwd
       - name: Get gtest
         uses: actions/download-artifact@v2
         with: 
           name: my-gtest
+      - run: ls
       - name: Make CI_test
         run: |
-          sudo ./test
+          ./build/tests/test
       - name: Get gcovr
         run: make gcovr
       - name: Get lcov
