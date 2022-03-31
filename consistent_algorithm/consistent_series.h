@@ -1,0 +1,4 @@
+#ifndef CONSISTENT_SERIES
+#define CONSISTENT_SERIES
+
+#endif
