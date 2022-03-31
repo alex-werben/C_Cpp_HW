@@ -30,7 +30,6 @@ void gen_series(char* sequence, int const length, int *size) {
 int write_data_to_file(char* sequence) {
   FILE* fp = NULL;
   fp = fopen("sequence.txt", "w");
-
   if (!fp) {
     return 1;
   }
@@ -72,12 +71,12 @@ sequence* init_sequence() {
 }
 
 // Handle sequence generation
-sequence* sequence_generator(int const n) {
+int sequence_generator(int const n) {
   srand(time (NULL));
 
   sequence* seq = init_sequence();
   if (!seq) {
-    return NULL;
+    return 1;
   }
 
   while (seq->size < ARRAY_SIZE) {
@@ -104,7 +103,9 @@ sequence* sequence_generator(int const n) {
 
   write_data_to_file(seq->arr);
 
-  return seq;
+  delete_sequence(seq);
+
+  return 0;
 }
 
 // Generate random char
@@ -114,26 +115,22 @@ char get_random_char() {
 
 // Free allocated memory
 int delete_sequence(sequence* obj) {
+  if (!obj) {
+    return 1;
+  }
+
   if (obj->arr) {
     free(obj->arr);
     obj->arr = NULL;
-  } else {
-    return 1;
   }
 
   if (obj->occurancies) {
     free(obj->occurancies);
     obj->occurancies = NULL;
-  } else {
-    return 1;
   }
 
-  if (obj) {
-    free(obj);
-    obj = NULL;
-  } else {
-    return 1;
-  }
+  free(obj);
+  obj = NULL;
 
   return 0;
 }
