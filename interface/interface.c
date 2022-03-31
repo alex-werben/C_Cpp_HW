@@ -28,6 +28,7 @@ char* read_data_from_file(void) {
   char* seq = NULL;
   seq = malloc(ARRAY_SIZE * sizeof(char));
   if (!seq) {
+    fclose(fp);
     return NULL;
   }
 

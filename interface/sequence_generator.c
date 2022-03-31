@@ -7,7 +7,7 @@
 int check_occurancies(int arr[], int const n) {
   for (int i = 0; i < MAX_LENGTH; ++i) {
     if (i != n - 1) {
-      if (arr[n - 1] - arr[i] <= 1) { // Если кол-во нужных серий недостаточно
+      if (arr[n - 1] - arr[i] <= 2) { // Если кол-во нужных серий недостаточно
         return 0;
       }
     }
@@ -16,12 +16,14 @@ int check_occurancies(int arr[], int const n) {
 }
 
 // Generate series of specific length
-void gen_series(char* sequence, int const length, int *size) {
-  char sym = '\0';
-  while ((sym = get_random_char()) == sequence[*size - 1]) {}
+void gen_series(sequence* seq, int const length) {
+  char sym = get_random_char();
+  if (seq->size > 0) {
+    while ((sym = get_random_char()) == seq->arr[seq->size - 1]) {}
+  }
   // char sym = get_random_char();
   for (int i = 0; i < length; ++i) {
-    sequence[(*size)++] = sym;
+    seq->arr[seq->size++] = sym;
   }
   return;
 }
@@ -35,6 +37,7 @@ int write_data_to_file(char* sequence) {
   }
   
   if (fprintf(fp, "%s", sequence) < 0) {
+    fclose(fp);
     return 1;
   }
 
@@ -85,17 +88,17 @@ int sequence_generator(int const n) {
       int random_length = rand() % MAX_LENGTH + 1;
       ++seq->occurancies[random_length - 1];
 
-      gen_series(seq->arr, random_length, &seq->size);
+      gen_series(seq, random_length);
     } else {
       ++seq->occurancies[n - 1];
       
-      gen_series(seq->arr, n, &seq->size);
+      gen_series(seq, n);
     } 
 
     if (ARRAY_SIZE - seq->size <= MAX_LENGTH) {
       ++seq->occurancies[ARRAY_SIZE - seq->size - 2];
 
-      gen_series(seq->arr, ARRAY_SIZE - seq->size - 1, &seq->size);
+      gen_series(seq, ARRAY_SIZE - seq->size - 1);
 
       seq->arr[seq->size++] = '\0';
     }

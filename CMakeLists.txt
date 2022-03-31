@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(main)
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} src/main.c)
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage")
 

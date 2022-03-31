@@ -62,9 +62,14 @@ RLE* init_RLE(char* seq) {
     delete_RLE(obj);
     return NULL;
   }
-  obj->arr = seq;
-
+  obj->arr = NULL;
+  obj->length = NULL;
+  obj->occurancies = NULL;
+  obj->arr_size = 0;
+  obj->current_length = 0;
   obj->max_size = BLOCK_SIZE;
+
+  obj->arr = seq;
 
   obj->occurancies = malloc(obj->max_size * sizeof(int));
   if (!obj->occurancies) {
@@ -82,9 +87,6 @@ RLE* init_RLE(char* seq) {
     obj->occurancies[i] = 0;
     obj->length[i] = 0;
   }
-
-  obj->arr_size = 0;
-  obj->current_length = 0;
 
   return obj;
 }

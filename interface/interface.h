@@ -20,7 +20,7 @@ sequence* init_sequence(void);
 char get_random_char(void);
 int delete_sequence(sequence*);
 int check_occurancies(int[], int const);
-void gen_series(char*, int const, int*);
+void gen_series(sequence*, int const);
 int sequence_generator(int const);
 int write_data_to_file(char*);
 

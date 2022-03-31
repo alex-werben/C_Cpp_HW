@@ -11,7 +11,10 @@ rebuild:
 	make clean && make fullbuild
 
 run:
-	build/main
+	./build/main
+
+check:
+	./linters/run.sh
 
 test:
-	build/tests/test
+	./build/tests/test
