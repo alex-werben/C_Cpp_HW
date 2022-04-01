@@ -1,6 +1,7 @@
 // Copyright 2022 alex_werben
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "interface.h"
 
 enum algorithm_type { CONSISTENT = 1, PARALLEL, GEN_FILE, EXIT };
@@ -22,11 +23,19 @@ int main(int argc, char *argv[]) {
     }
 
     switch (c) {
-      case CONSISTENT: call_consistent_alg(); break;
-      case PARALLEL: break;
-      case GEN_FILE: call_sequence_generator(); break;
-      case EXIT: break;
-      default: printf("Wrong action\n"); break;
+      case CONSISTENT:
+        call_consistent_alg();
+        break;
+      case PARALLEL:
+        break;
+      case GEN_FILE:
+        call_sequence_generator();
+        break;
+      case EXIT:
+        break;
+      default:
+        printf("Wrong action\n");
+        break;
     }
   }
 

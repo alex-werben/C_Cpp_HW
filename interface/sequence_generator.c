@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include "interface.h"
 
 // Check number of series of different lengths
@@ -78,9 +79,8 @@ sequence *init_sequence(int const array_size, int const max_length) {
 }
 
 // Handle sequence generation
-int sequence_generator(int const array_size,
-                      int const max_length,
-                      int const n) {
+int sequence_generator(int const array_size, int const max_length,
+                       int const n) {
   srandom(time(NULL));
 
   sequence *seq = init_sequence(array_size, max_length);

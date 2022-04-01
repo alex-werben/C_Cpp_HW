@@ -1,12 +1,14 @@
 // Copyright 2022 alex_werben
+#include "interface.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "interface.h"
+
 #include "consistent_algorithm.h"
 
 // Handle interface
 int call_consistent_alg() {
-  char* seq = read_data_from_file();
+  char *seq = read_data_from_file();
 
   int res = consistent_algorithm(seq);
 
@@ -21,20 +23,20 @@ int call_sequence_generator() {
 
   printf("Enter size of symbol array that will be generated: ");
   if (scanf("%d", &arr_size) == 0) {
-      printf("Error: number must be written.\n");
-      return 1;
+    printf("Error: number must be written.\n");
+    return 1;
   }
 
   printf("Enter maximum length of series: ");
   if (scanf("%d", &max_length) == 0) {
-      printf("Error: number must be written.\n");
-      return 1;
+    printf("Error: number must be written.\n");
+    return 1;
   }
 
   printf("Enter what length should occur most frequently: ");
   if (scanf("%d", &length) == 0) {
-      printf("Error: number must be written.\n");
-      return 1;
+    printf("Error: number must be written.\n");
+    return 1;
   }
 
   sequence_generator(arr_size, max_length, length);

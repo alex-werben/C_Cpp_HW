@@ -1,5 +1,6 @@
 // Copyright 2022 alex_werben
 #include "consistent_algorithm.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
