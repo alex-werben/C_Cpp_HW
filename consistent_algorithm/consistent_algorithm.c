@@ -52,10 +52,9 @@ int get_max_occurance_length(RLE *obj) {
     }
   }
 
-  printf("Most frequently occuring length - %d\n", obj->length[index]);
-  printf("It occurs %d times\n", obj->occurancies[index]);
-  printf("Representer - %c\n",
-         obj->representer[index]);
+  // printf("Most frequently occuring length - %d\n", obj->length[index]);
+  // printf("It occurs %d times\n", obj->occurancies[index]);
+  // printf("Representer - %c\n", obj->representer[index]);
   return obj->length[index];
 }
 
