@@ -5,7 +5,7 @@ clean:
 	rm -rf build
 
 build:
-	cmake --build build
+	cmake -B build; cmake --build build
 
 rebuild:
 	make clean && make fullbuild
