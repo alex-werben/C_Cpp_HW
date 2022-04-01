@@ -141,42 +141,43 @@ int fill_RLE(RLE *obj) {
 
 // Increase size of obj->length and obj->occurancies if it is full by BLOCK_SIZE
 int increase_arr_size(RLE *obj) {
-  int *tmp = NULL;
+  int *tmp_i = NULL;
+  char *tmp_c = NULL;
 
   obj->max_size = obj->max_size + BLOCK_SIZE;
 
-  tmp = obj->length;
+  tmp_i = obj->length;
   obj->length = NULL;
   obj->length = malloc(obj->max_size * sizeof(int));
   if (!obj->length) {
     return 1;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
-    obj->length[i] = tmp[i];
+    obj->length[i] = tmp_i[i];
   }
-  free(tmp);
+  free(tmp_i);
 
-  tmp = obj->occurancies;
+  tmp_i = obj->occurancies;
   obj->occurancies = NULL;
   obj->occurancies = malloc(obj->max_size * sizeof(int));
   if (!obj->occurancies) {
     return 1;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
-    obj->occurancies[i] = tmp[i];
+    obj->occurancies[i] = tmp_i[i];
   }
-  free(tmp);
+  free(tmp_i);
 
-  tmp = obj->representer;
+  tmp_c = obj->representer;
   obj->representer = NULL;
   obj->representer = malloc(obj->max_size * sizeof(int));
   if (!obj->representer) {
     return 1;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
-    obj->representer[i] = tmp[i];
+    obj->representer[i] = tmp_c[i];
   }
-  free(tmp);
+  free(tmp_c);
 
   for (int i = obj->arr_size; i < obj->max_size; ++i) {
     obj->length[i] = 0;
