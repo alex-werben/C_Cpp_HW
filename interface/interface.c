@@ -11,6 +11,9 @@ int call_consistent_alg() {
   char *seq = read_data_from_file();
 
   int res = consistent_algorithm(seq);
+  if (seq) {
+    free(seq);
+  }
 
   return res;
 }

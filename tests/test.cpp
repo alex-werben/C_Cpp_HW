@@ -7,5 +7,5 @@ extern "C" {
 
 TEST (Interface, test_consistent_alg) {
   sequence_generator(20, 3, 2);
-  // EXPECT_EQ(2, call_consistent_alg());
+  EXPECT_EQ(call_consistent_alg(), 2);
 }
