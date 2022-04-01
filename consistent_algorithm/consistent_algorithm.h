@@ -5,6 +5,7 @@
 
 typedef struct {
   char* arr;
+  char* representer;
   int* occurancies;
   int* length;
   int current_length;
@@ -19,7 +20,6 @@ int fill_RLE(RLE*);
 int check_length_existance(int[], int, int);
 int increase_arr_size(RLE*);
 int get_max_occurance_length(RLE*);
-
-void print_info(RLE*);  //DEBUG FUNC
+void print_info(RLE*);
 
 #endif

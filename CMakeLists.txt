@@ -13,6 +13,4 @@ add_subdirectory(interface)
 target_include_directories(${PROJECT_NAME} PUBLIC ${INTERFACE_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${INTERFACE_LIBRARIES})
 
-
-
 add_subdirectory(tests)

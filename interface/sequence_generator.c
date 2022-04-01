@@ -1,19 +1,19 @@
 // Copyright 2022 alex_werben
-#include "interface.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "interface.h"
 
 // Check number of series of different lengths
-int check_occurancies(int arr[], int const n) {
-  for (int i = 0; i < MAX_LENGTH; ++i) {
+int check_occurancies(int arr[], int const n, int const max_length) {
+  for (int i = 0; i < max_length; ++i) {
     if (i != n - 1) {
-      if (arr[n - 1] - arr[i] <= 2) { // not enough series
+      if (arr[n - 1] - arr[i] <= 2) {  // not enough series
         return 0;
       }
     }
   }
-  return 1; // enough series
+  return 1;  // enough series
 }
 
 // Generate series of specific length
@@ -51,7 +51,7 @@ int write_data_to_file(char *sequence) {
 }
 
 // Sequence initialization
-sequence *init_sequence() {
+sequence *init_sequence(int const array_size, int const max_length) {
   sequence *obj = malloc(sizeof(sequence));
   if (!obj) {
     return NULL;
@@ -59,17 +59,17 @@ sequence *init_sequence() {
   obj->arr = NULL;
   obj->occurancies = NULL;
 
-  obj->arr = malloc(ARRAY_SIZE * sizeof(char));
+  obj->arr = malloc(array_size * sizeof(char));
   if (!obj->arr) {
     delete_sequence(obj);
     return NULL;
   }
-  obj->occurancies = malloc(MAX_LENGTH * sizeof(int));
+  obj->occurancies = malloc(max_length * sizeof(int));
   if (!obj->occurancies) {
     delete_sequence(obj);
     return NULL;
   }
-  for (int i = 0; i < MAX_LENGTH; ++i) {
+  for (int i = 0; i < max_length; ++i) {
     obj->occurancies[i] = 0;
   }
   obj->size = 0;
@@ -78,17 +78,19 @@ sequence *init_sequence() {
 }
 
 // Handle sequence generation
-int sequence_generator(int const n) {
+int sequence_generator(int const array_size,
+                      int const max_length,
+                      int const n) {
   srandom(time(NULL));
 
-  sequence *seq = init_sequence();
+  sequence *seq = init_sequence(array_size, max_length);
   if (!seq) {
     return 1;
   }
 
-  while (seq->size < ARRAY_SIZE) {
-    if (check_occurancies(seq->occurancies, n)) {
-      int random_length = random() % MAX_LENGTH + 1;
+  while (seq->size < array_size) {
+    if (check_occurancies(seq->occurancies, n, max_length)) {
+      int random_length = arc4random() % max_length + 1;
       ++seq->occurancies[random_length - 1];
       gen_series(seq, random_length);
     } else {
@@ -96,10 +98,10 @@ int sequence_generator(int const n) {
       gen_series(seq, n);
     }
 
-    if (ARRAY_SIZE - seq->size <= MAX_LENGTH) {
-      ++seq->occurancies[ARRAY_SIZE - seq->size - 2];
+    if (array_size - seq->size <= max_length) {
+      ++seq->occurancies[array_size - seq->size - 2];
 
-      gen_series(seq, ARRAY_SIZE - seq->size - 1);
+      gen_series(seq, array_size - seq->size - 1);
 
       seq->arr[seq->size++] = '\0';
     }
@@ -109,11 +111,11 @@ int sequence_generator(int const n) {
 
   delete_sequence(seq);
 
-  return 0;
+  return n;
 }
 
 // Generate random char
-char get_random_char() { return 'A' + random() % 5; }
+char get_random_char() { return 'A' + arc4random() % 5; }
 
 // Free allocated memory
 int delete_sequence(sequence *obj) {

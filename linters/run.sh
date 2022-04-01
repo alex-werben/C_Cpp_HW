@@ -21,10 +21,6 @@ function check_log() {
     fi
 }
 
-print_header "RUN clang-format"
-check_log "clang-format -i **/*.c" "\(information\)"
-print_header "SUCCESS clang-format"
-
 print_header "RUN cppcheck"
 check_log "cppcheck **/*.c IT--enable=all --inconclusive --error-exitcode=1 -Iconsistent_algorithm -Iinterface -Iparallel_algorithm --suppress=missingIncludeSystem" "\(information\)"
 print_header "SUCCESS cppcheck"

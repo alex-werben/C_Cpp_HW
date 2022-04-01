@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum answer { YES = 1, NO };
+
 // Find most frequently appearing length
 int consistent_algorithm(char *seq) {
   RLE *obj = NULL;
@@ -23,17 +25,17 @@ int consistent_algorithm(char *seq) {
   return max;
 }
 
-// void print_info(RLE* obj) {
+// Debug information
+// void print_info(RLE *obj) {
 //   printf("___________\n");
 //   for (int i = 0; i < obj->arr_size; ++i) {
 //     printf("[%d]: ", i);
 //     printf("length - %d, ", obj->length[i]);
-//     printf("occurs - %d times\n", obj->occurancies[i]);
+//     printf("occurs - %d times, ", obj->occurancies[i]);
+//     printf("representer - %c\n", obj->representer[i]);
 //   }
-//   printf("current length - %d\n", obj->current_length);
-//   printf("array size - %d\n", obj->arr_size);
-//   printf("max size - %d\n", obj->max_size);
-//   // printf("sequence - %s\n", obj->arr);
+//   printf("amount of series - %d\n", obj->arr_size);
+//   printf("sequence - %s\n", obj->arr);
 
 //   return;
 // }
@@ -50,6 +52,10 @@ int get_max_occurance_length(RLE *obj) {
     }
   }
 
+  printf("Most frequently occuring length - %d\n", obj->length[index]);
+  printf("It occurs %d times\n", obj->occurancies[index]);
+  printf("Representer - %c\n",
+         obj->representer[index]);
   return obj->length[index];
 }
 
@@ -64,6 +70,7 @@ RLE *init_RLE(char *seq) {
     return NULL;
   }
   obj->arr = NULL;
+  obj->representer = NULL;
   obj->length = NULL;
   obj->occurancies = NULL;
   obj->arr_size = 0;
@@ -84,9 +91,12 @@ RLE *init_RLE(char *seq) {
     return NULL;
   }
 
+  obj->representer = malloc(obj->max_size * sizeof(char));
+
   for (int i = 0; i < obj->max_size; ++i) {
     obj->occurancies[i] = 0;
     obj->length[i] = 0;
+    obj->representer[i] = '\0';
   }
 
   return obj;
@@ -105,15 +115,16 @@ int fill_RLE(RLE *obj) {
 
     int length_index =
         check_length_existance(obj->length, obj->current_length, obj->arr_size);
-
     if (length_index >= 0) {
       obj->occurancies[length_index] += 1;
+      obj->representer[length_index] = obj->arr[i - 1];
     } else {
       if (obj->arr_size == obj->max_size) {
         if (increase_arr_size(obj)) {
           return 1;
         }
       }
+      obj->representer[obj->arr_size] = obj->arr[i - 1];
       obj->occurancies[obj->arr_size] += 1;
       obj->length[obj->arr_size] = obj->current_length;
       ++obj->arr_size;

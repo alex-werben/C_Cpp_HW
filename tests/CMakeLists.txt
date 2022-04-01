@@ -13,3 +13,6 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INTERFACE_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${INTERFACE_LIBRARIES} GTest::gtest_main)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${CONSISTENT_ALGORITHM_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${CONSISTENT_ALGORITHM_LIBRARIES} GTest::gtest_main)
