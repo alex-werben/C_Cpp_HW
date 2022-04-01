@@ -30,12 +30,12 @@ TEST (Interface, test_interface) {
   FILE* fp = NULL;
   char str1[] = "20 3 2\n";
   fp = fmemopen(str1, 8, "r");
-  // EXPECT_EQ(call_sequence_generator(fp), 1);
-  EXPECT_EQ(call_consistent_alg(), 2);
+  EXPECT_EQ(call_sequence_generator(fp), 1);
+  // EXPECT_EQ(call_consistent_alg(), 2);
   fclose(fp);
 }
 
-TEST (consistent_algorithm, consistent_alg_functions) {
+TEST (Consistent_algorithm, consistent_alg_functions) {
   EXPECT_EQ(delete_RLE(NULL), NOT_ALLOCATED);
   EXPECT_EQ(increase_arr_size(NULL), POINTER_ERROR);
 }
