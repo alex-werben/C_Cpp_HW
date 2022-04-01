@@ -36,19 +36,16 @@ int write_data_to_file(char *sequence) {
   FILE *fp = NULL;
   fp = fopen("sequence.txt", "w");
   if (!fp) {
-    return 1;
+    return OPEN_FILE_ERROR;
   }
 
   if (fprintf(fp, "%s", sequence) < 0) {
     fclose(fp);
-    return 1;
+    return WRITE_DATA_ERROR;
   }
 
-  if (fclose(fp) == 0) {
-    return 0;
-  } else {
-    return 1;
-  }
+  fclose(fp);
+  return 0;
 }
 
 // Sequence initialization

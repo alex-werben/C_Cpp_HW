@@ -1,4 +1,0 @@
-#ifndef PARALLEL_ALGORITHM
-#define PARALLEL_ALGORITHM
-
-#endif

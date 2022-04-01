@@ -1,5 +1,10 @@
+#include <stdio.h>
 #ifndef INTERFACE
 #define INTERFACE
+
+// Error codes
+#define OPEN_FILE_ERROR 4
+#define WRITE_DATA_ERROR 5
 
 typedef struct sequence {
   char* arr;
@@ -7,8 +12,9 @@ typedef struct sequence {
   int size;
 } sequence;
 
+int call_parallel_alg(void);
 int call_consistent_alg(void);
-int call_sequence_generator(void);
+int call_sequence_generator(FILE* fp);
 int interface(int const);
 char* read_data_from_file(void);
 

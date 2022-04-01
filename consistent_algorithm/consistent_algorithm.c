@@ -9,15 +9,17 @@ int consistent_algorithm(char *seq) {
   RLE *obj = NULL;
   obj = init_RLE(seq);
   if (!obj) {
-    return 1;
+    return NOT_ALLOCATED;
   }
 
   if (fill_RLE(obj)) {
-    return 1;
+    return REALLOCATION_ERROR;
   }
 
   int max = 0;
   max = get_max_occurance_length(obj);
+
+  print_info(obj);
 
   delete_RLE(obj);
 
@@ -25,19 +27,18 @@ int consistent_algorithm(char *seq) {
 }
 
 // Debug information
-// void print_info(RLE *obj) {
-//   printf("___________\n");
-//   for (int i = 0; i < obj->arr_size; ++i) {
-//     printf("[%d]: ", i);
-//     printf("length - %d, ", obj->length[i]);
-//     printf("occurs - %d times, ", obj->occurancies[i]);
-//     printf("representer - %c\n", obj->representer[i]);
-//   }
-//   printf("amount of series - %d\n", obj->arr_size);
-//   printf("sequence - %s\n", obj->arr);
-
-//   return;
-// }
+void print_info(RLE *obj) {
+  printf("___________\n");
+  for (int i = 0; i < obj->arr_size; ++i) {
+    printf("[%d]: ", i);
+    printf("length - %d, ", obj->length[i]);
+    printf("occurs - %d times, ", obj->occurancies[i]);
+    printf("representer - %c\n", obj->representer[i]);
+  }
+  printf("amount of series - %d\n", obj->arr_size);
+  // printf("sequence - %s\n", obj->arr);
+  return;
+}
 
 // Get length which occured most often
 int get_max_occurance_length(RLE *obj) {
@@ -51,16 +52,15 @@ int get_max_occurance_length(RLE *obj) {
     }
   }
 
-  // printf("Most frequently occuring length - %d\n", obj->length[index]);
-  // printf("It occurs %d times\n", obj->occurancies[index]);
-  // printf("Representer - %c\n", obj->representer[index]);
+  printf("Most frequently occuring length - %d\n", obj->length[index]);
+  printf("It occurs %d times\n", obj->occurancies[index]);
+  printf("Representer - %c\n", obj->representer[index]);
   return obj->length[index];
 }
 
 // Initialize RLE structure
 RLE *init_RLE(char *seq) {
   RLE *obj = NULL;
-  FILE *fp = NULL;
 
   obj = malloc(sizeof(RLE));
   if (!obj) {
@@ -116,14 +116,14 @@ int fill_RLE(RLE *obj) {
     }
 
     int length_index =
-        check_length_existance(obj->length, obj->current_length, obj->arr_size);
+        length_checked(obj->length, obj->current_length, obj->arr_size);
     if (length_index >= 0) {
       obj->occurancies[length_index] += 1;
       obj->representer[length_index] = obj->arr[i - 1];
     } else {
       if (obj->arr_size == obj->max_size) {
         if (increase_arr_size(obj)) {
-          return 1;
+          return REALLOCATION_ERROR;
         }
       }
       obj->representer[obj->arr_size] = obj->arr[i - 1];
@@ -144,13 +144,17 @@ int increase_arr_size(RLE *obj) {
   int *tmp_i = NULL;
   char *tmp_c = NULL;
 
+  if (!obj) {
+    return POINTER_ERROR;
+  }
+
   obj->max_size = obj->max_size + BLOCK_SIZE;
 
   tmp_i = obj->length;
   obj->length = NULL;
   obj->length = malloc(obj->max_size * sizeof(int));
   if (!obj->length) {
-    return 1;
+    return NOT_ALLOCATED;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
     obj->length[i] = tmp_i[i];
@@ -161,7 +165,7 @@ int increase_arr_size(RLE *obj) {
   obj->occurancies = NULL;
   obj->occurancies = malloc(obj->max_size * sizeof(int));
   if (!obj->occurancies) {
-    return 1;
+    return NOT_ALLOCATED;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
     obj->occurancies[i] = tmp_i[i];
@@ -172,7 +176,7 @@ int increase_arr_size(RLE *obj) {
   obj->representer = NULL;
   obj->representer = malloc(obj->max_size * sizeof(int));
   if (!obj->representer) {
-    return 1;
+    return NOT_ALLOCATED;
   }
   for (int i = 0; i < obj->arr_size; ++i) {
     obj->representer[i] = tmp_c[i];
@@ -189,7 +193,7 @@ int increase_arr_size(RLE *obj) {
 
 // Check if specific length has already appeared
 // if YES return index in length[], else -1
-int check_length_existance(int length[], int current_length, int arr_size) {
+int length_checked(int* length, int current_length, int arr_size) {
   for (int i = 0; i < arr_size; ++i) {
     if (length[i] == current_length) {
       return i;
@@ -201,7 +205,7 @@ int check_length_existance(int length[], int current_length, int arr_size) {
 // Delete allocated memory for RLE structure
 int delete_RLE(RLE *obj) {
   if (!obj) {
-    return 1;
+    return NOT_ALLOCATED;
   }
 
   if (obj->arr) {

@@ -4,7 +4,7 @@
 
 #include "interface.h"
 
-enum algorithm_type { CONSISTENT = 1, PARALLEL, GEN_FILE, EXIT };
+enum action_type { CONSISTENT = 1, PARALLEL, GEN_FILE, EXIT };
 
 int main(int argc, char *argv[]) {
   int c = 0;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
       case PARALLEL:
         break;
       case GEN_FILE:
-        call_sequence_generator();
+        call_sequence_generator(stdin);
         break;
       case EXIT:
         break;

@@ -3,38 +3,45 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <dlfcn.h>
 
 #include "consistent_algorithm.h"
 
 // Handle consistent algorithm work
 int call_consistent_alg() {
   char *seq = read_data_from_file();
+  clock_t start, stop;
 
+  start = clock();
   int res = consistent_algorithm(seq);
+  stop = clock();
+
+  printf("Consistent algorithm work time - %lu\n", (stop - start));
 
   return res;
 }
 
 // Handle sequence generation
-int call_sequence_generator() {
+int call_sequence_generator(FILE* fp) {
   int arr_size = 0;
   int max_length = 0;
   int length = 0;
 
   printf("Enter size of symbol array that will be generated: ");
-  if (scanf("%d", &arr_size) == 0) {
+  if (fscanf(fp, "%d", &arr_size) == EOF) {
     printf("Error: number must be written.\n");
     return 1;
   }
 
   printf("Enter maximum length of series: ");
-  if (scanf("%d", &max_length) == 0) {
+  if (fscanf(fp, "%d", &max_length) == EOF) {
     printf("Error: number must be written.\n");
     return 1;
   }
 
   printf("Enter what length should occur most frequently: ");
-  if (scanf("%d", &length) == 0) {
+  if (fscanf(fp, "%d", &length) == EOF) {
     printf("Error: number must be written.\n");
     return 1;
   }
@@ -43,6 +50,21 @@ int call_sequence_generator() {
 
   return 0;
 }
+
+// // Handle parallel algorithm work
+// int call_parallel_alg() {
+//   // void* library;
+//   char *seq = read_data_from_file();
+//   clock_t start, stop;
+
+//   start = clock();
+//   int res = parallel_algorithm(seq);
+//   stop = clock();
+
+//   printf("Parallel algorithm work time - %lu\n", (stop - start));
+
+//   return res;
+// }
 
 char *read_data_from_file(void) {
   FILE *fp = NULL;
@@ -69,11 +91,7 @@ char *read_data_from_file(void) {
   if (fclose(fp) == 0) {
     return seq;
   } else {
-    if (seq) {
-      free(seq);
-    }
+    free(seq);
     return NULL;
   }
-
-  return seq;
 }
