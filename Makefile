@@ -27,3 +27,12 @@ gcov:
 
 gcovr:
 	rm -rf gcovr_report; mkdir gcovr_report; gcovr -r . --html --html-details -o gcovr_report/coverage.html
+
+install_GTest:
+	mkdir gtest 
+	cd gtest
+	git clone https://github.com/google/googletest.git 
+	cd googletest 
+	cmake -B build 
+	cmake --build build 
+	sudo cmake --install build
