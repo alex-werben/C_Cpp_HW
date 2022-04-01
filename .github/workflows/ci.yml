@@ -40,7 +40,10 @@ jobs:
       - name: Make test
         run: make test
       - name: Make gcov
-        run: gcov -abcfu build/**/CMakeFiles/**/*.gcno
+        run: |
+          gcov -abcfu build/**/CMakeFiles/**/interface.c.gcno
+          gcov -abcfu build/**/CMakeFiles/**/sequence_generator.c.gcno
+          gcov -abcfu build/**/CMakeFiles/**/consistent_algorithm.c.gcno
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
