@@ -31,6 +31,8 @@ TEST (Interface, test_interface) {
   char str1[] = "20 3 2\n";
   fp = fmemopen(str1, 8, "r");
   EXPECT_EQ(call_sequence_generator(fp), 1);
+
+  EXPECT_EQ(sequence_generator(20, 3, 2), 2);
   // EXPECT_EQ(call_consistent_alg(), 2);
   fclose(fp);
 }
