@@ -27,13 +27,12 @@ TEST (Interface, test_sequence_generator) {
 
 TEST (Interface, test_interface) {
   EXPECT_EQ(delete_sequence(NULL), 1);
-  // FILE* fp = NULL;
-  // char str1[] = "20 3 2\n";
-  // fp = fmemopen(str1, 8, "r");
-  // call_sequence_generator(fp);
+  FILE* fp = NULL;
+  char str1[] = "20 3 2\n";
+  fp = fmemopen(str1, 8, "r");
+  EXPECT_EQ(call_sequence_generator(fp), 1);
   // EXPECT_EQ(call_consistent_alg(), 2);
-  // fclose(fp);
-  // EXPECT_EQ(call_sequence_generator(fp), 1);
+  fclose(fp);
 }
 
 TEST (consistent_algorithm, consistent_alg_functions) {
