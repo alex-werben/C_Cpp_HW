@@ -12,8 +12,8 @@ TEST (Interface, test_consistent_alg) {
   //   arr[i] = str[i];
   // }
   // consistent_algorithm(arr);
-  call_consistent_alg();
-  // EXPECT_EQ(call_consistent_alg(), 2);
-  EXPECT_EQ(sequence_generator(20, 3, 2), 2);
+  // call_consistent_alg();
+  EXPECT_EQ(call_consistent_alg(), 2);
+  // EXPECT_EQ(sequence_generator(20, 3, 2), 2);
   // free(arr);
 }
