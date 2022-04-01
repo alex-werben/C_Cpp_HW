@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum answer { YES = 1, NO };
-
 // Find most frequently appearing length
 int consistent_algorithm(char *seq) {
   RLE *obj = NULL;
@@ -194,6 +192,10 @@ int delete_RLE(RLE *obj) {
   if (obj->arr) {
     free(obj->arr);
     obj->arr = NULL;
+  }
+  if (obj->representer) {
+    free(obj->representer);
+    obj->representer = NULL;
   }
   if (obj->occurancies) {
     free(obj->occurancies);
