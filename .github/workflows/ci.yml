@@ -26,8 +26,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "hw-2"
-      - name: Update
-        run: sudo apt update -y
       - name: Install GTest
         run: |
           mkdir gtest
@@ -47,6 +45,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "hw-2"
+      - name: Update
+        run: sudo apt update -y
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: Install GTest
