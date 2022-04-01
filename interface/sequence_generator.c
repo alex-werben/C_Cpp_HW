@@ -78,6 +78,8 @@ sequence* init_sequence() {
 
 // Handle sequence generation
 int sequence_generator(int const n) {
+  srandom(time(NULL));
+
   sequence* seq = init_sequence();
   if (!seq) {
     return 1;
@@ -85,7 +87,7 @@ int sequence_generator(int const n) {
 
   while (seq->size < ARRAY_SIZE) {
     if (check_occurancies(seq->occurancies, n)) {
-      int random_length = arc4random() % MAX_LENGTH + 1;
+      int random_length = random() % MAX_LENGTH + 1;
       ++seq->occurancies[random_length - 1];
       gen_series(seq, random_length);
     } else {
@@ -111,7 +113,7 @@ int sequence_generator(int const n) {
 
 // Generate random char
 char get_random_char() {
-  return 'A' + arc4random() % 5;
+  return 'A' + random() % 5;
 }
 
 // Free allocated memory
