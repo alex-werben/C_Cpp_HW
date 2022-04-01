@@ -2,10 +2,9 @@
 #define INTERFACE
 
 // Size of symbol array
-// #define ARRAY_SIZE 100 * 1000 * 1000
-#define ARRAY_SIZE 20
+#define ARRAY_SIZE 100 * 1000
 // Maximum length of series
-#define MAX_LENGTH 3
+#define MAX_LENGTH 32
 
 typedef struct sequence {
   char* arr;
@@ -23,8 +22,5 @@ int check_occurancies(int[], int const);
 void gen_series(sequence*, int const);
 int sequence_generator(int const);
 int write_data_to_file(char*);
-
-// TEST FUNC
-void print_values(char*);
 
 #endif

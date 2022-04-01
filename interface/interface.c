@@ -1,3 +1,4 @@
+// Copyright 2022 alex_werben
 #include <stdlib.h>
 #include <stdio.h>
 #include "consistent_algorithm.h"
@@ -8,14 +9,12 @@ int length_series(int n) {
   if (sequence_generator(n)) {
     return 1;
   }
-  
+
   char* seq = read_data_from_file();
 
-  consistent_algorithm(seq);
+  int res = consistent_algorithm(seq);
 
-  // print_values(seq->arr);
-
-  return 0;
+  return res;
 }
 
 char* read_data_from_file(void) {
@@ -44,13 +43,4 @@ char* read_data_from_file(void) {
   }
 
   return seq;
-}
-
-void print_values(char* arr) {
-  for (size_t i = 0; i < 100; i++)
-  {
-    printf("%c", arr[i]);
-  }
-  printf("\n");
-  
 }

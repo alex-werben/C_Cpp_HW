@@ -1,3 +1,4 @@
+// Copyright 2022 alex_werben
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -7,12 +8,12 @@
 int check_occurancies(int arr[], int const n) {
   for (int i = 0; i < MAX_LENGTH; ++i) {
     if (i != n - 1) {
-      if (arr[n - 1] - arr[i] <= 2) { // Если кол-во нужных серий недостаточно
+      if (arr[n - 1] - arr[i] <= 2) {   // not enough series
         return 0;
       }
     }
   }
-  return 1; // Кол-во нужных серий достаточно
+  return 1;    // enough series
 }
 
 // Generate series of specific length
@@ -35,7 +36,7 @@ int write_data_to_file(char* sequence) {
   if (!fp) {
     return 1;
   }
-  
+
   if (fprintf(fp, "%s", sequence) < 0) {
     fclose(fp);
     return 1;
@@ -54,6 +55,8 @@ sequence* init_sequence() {
   if (!obj) {
     return NULL;
   }
+  obj->arr = NULL;
+  obj->occurancies = NULL;
 
   obj->arr = malloc(ARRAY_SIZE * sizeof(char));
   if (!obj->arr) {
@@ -69,14 +72,12 @@ sequence* init_sequence() {
     obj->occurancies[i] = 0;
   }
   obj->size = 0;
-  
+
   return obj;
 }
 
 // Handle sequence generation
 int sequence_generator(int const n) {
-  srand(time (NULL));
-
   sequence* seq = init_sequence();
   if (!seq) {
     return 1;
@@ -84,16 +85,13 @@ int sequence_generator(int const n) {
 
   while (seq->size < ARRAY_SIZE) {
     if (check_occurancies(seq->occurancies, n)) {
-
-      int random_length = rand() % MAX_LENGTH + 1;
+      int random_length = arc4random() % MAX_LENGTH + 1;
       ++seq->occurancies[random_length - 1];
-
       gen_series(seq, random_length);
     } else {
       ++seq->occurancies[n - 1];
-      
       gen_series(seq, n);
-    } 
+    }
 
     if (ARRAY_SIZE - seq->size <= MAX_LENGTH) {
       ++seq->occurancies[ARRAY_SIZE - seq->size - 2];
@@ -113,7 +111,7 @@ int sequence_generator(int const n) {
 
 // Generate random char
 char get_random_char() {
-  return 'A' + rand() % 5;
+  return 'A' + arc4random() % 5;
 }
 
 // Free allocated memory

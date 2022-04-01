@@ -1,3 +1,4 @@
+// Copyright 2022 alex_werben
 #include <stdio.h>
 #include <stdlib.h>
 #include "consistent_algorithm.h"
@@ -17,32 +18,32 @@ int consistent_algorithm(char* seq) {
   int max = 0;
   max = get_max_occurance_length(obj);
 
-  // print_info(obj);
-  printf("max - %d\n", max);
-
   delete_RLE(obj);
 
-  return 0;
+  return max;
 }
 
-void print_info(RLE* obj) {
-  printf("___________\n");
-  for (int i = 0; i < obj->arr_size; ++i) {
-    printf("[%d]: length - %d, occurs - %d times\n", i, obj->length[i], obj->occurancies[i]);
-  }
-  printf("current length - %d\n", obj->current_length);
-  printf("array size - %d\n", obj->arr_size);
-  printf("sequence - %s\n", obj->arr);
+// void print_info(RLE* obj) {
+//   printf("___________\n");
+//   for (int i = 0; i < obj->arr_size; ++i) {
+//     printf("[%d]: ", i);
+//     printf("length - %d, ", obj->length[i]);
+//     printf("occurs - %d times\n", obj->occurancies[i]);
+//   }
+//   printf("current length - %d\n", obj->current_length);
+//   printf("array size - %d\n", obj->arr_size);
+//   printf("max size - %d\n", obj->max_size);
+//   // printf("sequence - %s\n", obj->arr);
 
-  return;
-}
+//   return;
+// }
 
-// Get length which occured most oftem
+// Get length which occured most often
 int get_max_occurance_length(RLE* obj) {
-  int max = obj->occurancies[0];
+  int max = obj->occurancies[obj->arr_size - 1];
   int index = 0;
 
-  for (int i = 0; i < obj->arr_size; ++i) {
+  for (int i = obj->arr_size - 1; i >= 0; --i) {
     if (max < obj->occurancies[i]) {
       max = obj->occurancies[i];
       index = i;
@@ -102,9 +103,11 @@ int fill_RLE(RLE* obj) {
       ++i;
     }
 
-    int length_index = 0;
-    if ((length_index = check_length_existance(obj->length, obj->current_length, obj->arr_size)) >= 0) {
-      // printf("if cond %d\n", obj->occurancies[0]);
+    int length_index = check_length_existance(obj->length,
+                                              obj->current_length,
+                                              obj->arr_size);
+
+    if (length_index >= 0) {
       obj->occurancies[length_index] += 1;
     } else {
       if (obj->arr_size == obj->max_size) {
@@ -117,8 +120,7 @@ int fill_RLE(RLE* obj) {
       ++obj->arr_size;
     }
 
-    print_info(obj);
-    printf("symbol - %c\n", c);
+    // print_info(obj);
     obj->current_length = 0;
   }
 
@@ -156,17 +158,17 @@ int increase_arr_size(RLE* obj) {
     obj->length[i] = 0;
     obj->occurancies[i] = 0;
   }
-  
+
   free(tmp);
 
   return 0;
 }
 
-// Check if specific length has already appeared, if YES return index in length[], else -1
+// Check if specific length has already appeared
+// if YES return index in length[], else -1
 int check_length_existance(int length[], int current_length, int arr_size) {
   for (int i = 0; i < arr_size; ++i) {
     if (length[i] == current_length) {
-      printf("index %d\n", i);
       return i;
     }
   }

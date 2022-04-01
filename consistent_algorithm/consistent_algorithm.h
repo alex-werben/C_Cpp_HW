@@ -1,7 +1,7 @@
 #ifndef CONSISTENT_SERIES
 #define CONSISTENT_SERIES
 
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 8
 
 typedef struct {
   char* arr;
