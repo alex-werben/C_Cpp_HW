@@ -27,7 +27,7 @@ jobs:
         with:
           ref: "hw-2"
       - name: Update
-        run: apt update -y
+        run: sudo apt update -y
       - name: Install valgrind
         run: sudo apt-get install valgrind
       - name: Install GTest
