@@ -42,7 +42,7 @@ jobs:
       - name: Make build
         run: make build
       - name: Run valgrind
-        run: valgrind build/main
+        run: valgrind build/tests/test
   test:
     runs-on: ubuntu-latest
     needs: [build]
