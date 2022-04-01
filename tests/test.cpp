@@ -26,8 +26,7 @@ TEST (Interface, test_sequence_generator) {
 }
 
 TEST (Interface, test_interface) {
-  // EXPECT_EQ(read_data_from_file(), NULL);
-  // EXPECT_EQ(delete_sequence(NULL), 1);
+  EXPECT_EQ(delete_sequence(NULL), 1);
   // FILE* fp = NULL;
   // char str1[] = "20 3 2\n";
   // fp = fmemopen(str1, 8, "r");
