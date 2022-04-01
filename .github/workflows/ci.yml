@@ -47,5 +47,8 @@ jobs:
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
-          files: /home/runner/work/C_Cpp_HW/C_Cpp_HW/*.gcov
+          files: |
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/interface.c.gcov
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/sequence_generator.c.gcov
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/consistent_algorithm.c.gcov
           token: ${{ secrets.CODECOV_TOKEN }}
