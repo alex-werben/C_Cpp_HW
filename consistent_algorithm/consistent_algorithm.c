@@ -90,6 +90,10 @@ RLE *init_RLE(char *seq) {
   }
 
   obj->representer = malloc(obj->max_size * sizeof(char));
+  if (!obj->representer) {
+    delete_RLE(obj);
+    return NULL;
+  }
 
   for (int i = 0; i < obj->max_size; ++i) {
     obj->occurancies[i] = 0;
