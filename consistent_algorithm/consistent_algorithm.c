@@ -165,13 +165,23 @@ int increase_arr_size(RLE *obj) {
   for (int i = 0; i < obj->arr_size; ++i) {
     obj->occurancies[i] = tmp[i];
   }
+  free(tmp);
+
+  tmp = obj->representer;
+  obj->representer = NULL;
+  obj->representer = malloc(obj->max_size * sizeof(int));
+  if (!obj->representer) {
+    return 1;
+  }
+  for (int i = 0; i < obj->arr_size; ++i) {
+    obj->representer[i] = tmp[i];
+  }
+  free(tmp);
 
   for (int i = obj->arr_size; i < obj->max_size; ++i) {
     obj->length[i] = 0;
     obj->occurancies[i] = 0;
   }
-
-  free(tmp);
 
   return 0;
 }
