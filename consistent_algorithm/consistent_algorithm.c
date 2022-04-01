@@ -1,11 +1,11 @@
 // Copyright 2022 alex_werben
+#include "consistent_algorithm.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "consistent_algorithm.h"
 
 // Find most frequently appearing length
-int consistent_algorithm(char* seq) {
-  RLE* obj = NULL;
+int consistent_algorithm(char *seq) {
+  RLE *obj = NULL;
   obj = init_RLE(seq);
   if (!obj) {
     return 1;
@@ -39,7 +39,7 @@ int consistent_algorithm(char* seq) {
 // }
 
 // Get length which occured most often
-int get_max_occurance_length(RLE* obj) {
+int get_max_occurance_length(RLE *obj) {
   int max = obj->occurancies[obj->arr_size - 1];
   int index = 0;
 
@@ -54,9 +54,9 @@ int get_max_occurance_length(RLE* obj) {
 }
 
 // Initialize RLE structure
-RLE* init_RLE(char* seq) {
-  RLE* obj = NULL;
-  FILE* fp = NULL;
+RLE *init_RLE(char *seq) {
+  RLE *obj = NULL;
+  FILE *fp = NULL;
 
   obj = malloc(sizeof(RLE));
   if (!obj) {
@@ -93,7 +93,7 @@ RLE* init_RLE(char* seq) {
 }
 
 // Calculate length occurancies and how often they appear
-int fill_RLE(RLE* obj) {
+int fill_RLE(RLE *obj) {
   char c = '\0';
 
   for (int i = 0; obj->arr[i] != '\0';) {
@@ -103,9 +103,8 @@ int fill_RLE(RLE* obj) {
       ++i;
     }
 
-    int length_index = check_length_existance(obj->length,
-                                              obj->current_length,
-                                              obj->arr_size);
+    int length_index =
+        check_length_existance(obj->length, obj->current_length, obj->arr_size);
 
     if (length_index >= 0) {
       obj->occurancies[length_index] += 1;
@@ -128,8 +127,8 @@ int fill_RLE(RLE* obj) {
 }
 
 // Increase size of obj->length and obj->occurancies if it is full by BLOCK_SIZE
-int increase_arr_size(RLE* obj) {
-  int* tmp = NULL;
+int increase_arr_size(RLE *obj) {
+  int *tmp = NULL;
 
   obj->max_size = obj->max_size + BLOCK_SIZE;
 
@@ -176,7 +175,7 @@ int check_length_existance(int length[], int current_length, int arr_size) {
 }
 
 // Delete allocated memory for RLE structure
-int delete_RLE(RLE* obj) {
+int delete_RLE(RLE *obj) {
   if (!obj) {
     return 1;
   }

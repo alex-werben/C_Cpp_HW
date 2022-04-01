@@ -10,12 +10,12 @@ jobs:
       - uses: actions/setup-python@v1
       - name: Install cpplint
         run: pip install cpplint
-      - name: Install libbsd-dev
-        run: sudo apt-get install libbsd-dev
       - name: Install clang-tidy
         run: sudo apt-get install clang-tidy
       - name: Install cppcheck
         run: sudo apt-get install cppcheck
+      - name: Install clang-format
+        run: sudo apt-get install clang-format
       - name: Make check
         run: make check
   build:
@@ -52,8 +52,6 @@ jobs:
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
-          files: |
-            /home/runner/work/C_Cpp_HW/C_Cpp_HW/interface.c.gcov
-            /home/runner/work/C_Cpp_HW/C_Cpp_HW/sequence_generator.c.gcov
-            /home/runner/work/C_Cpp_HW/C_Cpp_HW/consistent_algorithm.c.gcov
+          path: |
+            /home/runner/work/C_Cpp_HW/C_Cpp_HW/
           token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,26 +1,27 @@
 // Copyright 2022 alex_werben
+#include "interface.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "interface.h"
 
 // Check number of series of different lengths
 int check_occurancies(int arr[], int const n) {
   for (int i = 0; i < MAX_LENGTH; ++i) {
     if (i != n - 1) {
-      if (arr[n - 1] - arr[i] <= 2) {   // not enough series
+      if (arr[n - 1] - arr[i] <= 2) { // not enough series
         return 0;
       }
     }
   }
-  return 1;    // enough series
+  return 1; // enough series
 }
 
 // Generate series of specific length
-void gen_series(sequence* seq, int const length) {
+void gen_series(sequence *seq, int const length) {
   char sym = get_random_char();
   if (seq->size > 0) {
-    while ((sym = get_random_char()) == seq->arr[seq->size - 1]) {}
+    while ((sym = get_random_char()) == seq->arr[seq->size - 1]) {
+    }
   }
   // char sym = get_random_char();
   for (int i = 0; i < length; ++i) {
@@ -30,8 +31,8 @@ void gen_series(sequence* seq, int const length) {
 }
 
 // Save sequence into file
-int write_data_to_file(char* sequence) {
-  FILE* fp = NULL;
+int write_data_to_file(char *sequence) {
+  FILE *fp = NULL;
   fp = fopen("sequence.txt", "w");
   if (!fp) {
     return 1;
@@ -50,8 +51,8 @@ int write_data_to_file(char* sequence) {
 }
 
 // Sequence initialization
-sequence* init_sequence() {
-  sequence* obj = malloc(sizeof(sequence));
+sequence *init_sequence() {
+  sequence *obj = malloc(sizeof(sequence));
   if (!obj) {
     return NULL;
   }
@@ -80,7 +81,7 @@ sequence* init_sequence() {
 int sequence_generator(int const n) {
   srandom(time(NULL));
 
-  sequence* seq = init_sequence();
+  sequence *seq = init_sequence();
   if (!seq) {
     return 1;
   }
@@ -112,12 +113,10 @@ int sequence_generator(int const n) {
 }
 
 // Generate random char
-char get_random_char() {
-  return 'A' + random() % 5;
-}
+char get_random_char() { return 'A' + random() % 5; }
 
 // Free allocated memory
-int delete_sequence(sequence* obj) {
+int delete_sequence(sequence *obj) {
   if (!obj) {
     return 1;
   }
