@@ -72,4 +72,4 @@ jobs:
             /home/runner/work/C_Cpp_HW/C_Cpp_HW/
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Run valgrind
-        run: valgrind --error-exitcode=1 --tool=memcheck --leak-check=yes build/tests/test
+        run: valgrind --error-exitcode=1 --tool=memcheck --leak-check=yes -s build/tests/test
