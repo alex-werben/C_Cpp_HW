@@ -6,7 +6,7 @@
 
 #include "consistent_algorithm.h"
 
-// Handle interface
+// Handle consistent algorithm work
 int call_consistent_alg() {
   char *seq = read_data_from_file();
 
