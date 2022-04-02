@@ -1,0 +1,97 @@
+        -:    0:Source:/Users/admin/coding/VK_education/C-C++/HW2/interface/interface.c
+        -:    0:Graph:build/interface/CMakeFiles/interface.dir/interface.c.gcno
+        -:    0:Data:build/interface/CMakeFiles/interface.dir/interface.c.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Copyright 2022 alex_werben
+        -:    2:#include <stdlib.h>
+        -:    3:#include <stdio.h>
+        -:    4:#include "consistent_algorithm.h"
+        -:    5:#include "interface.h"
+        -:    6:
+        -:    7:// Handle Run-Length Series
+function length_series called 1 returned 100% blocks executed 80%
+        1:    8:int length_series(int n) {
+        1:    8-block  0
+unconditional  0 taken 1
+        1:    9:  if (sequence_generator(n)) {
+        1:    9-block  0
+branch  0 taken 0
+branch  1 taken 1
+    #####:   10:    return 1;
+    $$$$$:   10-block  0
+unconditional  0 never executed
+        -:   11:  }
+        -:   12:
+        1:   13:  char* seq = read_data_from_file();
+        -:   14:
+        1:   15:  int res = consistent_algorithm(seq);
+        -:   16:
+        1:   17:  return res;
+        1:   17-block  0
+unconditional  0 taken 1
+        1:   18:}
+        1:   18-block  0
+unconditional  0 taken 1
+        -:   19:
+function read_data_from_file called 1 returned 100% blocks executed 64%
+        1:   20:char* read_data_from_file(void) {
+        1:   21:  FILE* fp = NULL;
+        1:   21-block  0
+unconditional  0 taken 1
+        1:   22:  fp = fopen("sequence.txt", "r");
+        1:   23:  if (!fp) {
+        1:   23-block  0
+branch  0 taken 0
+branch  1 taken 1
+    #####:   24:    return NULL;
+    $$$$$:   24-block  0
+unconditional  0 never executed
+        -:   25:  }
+        -:   26:
+        1:   27:  char* seq = NULL;
+        1:   28:  seq = malloc(ARRAY_SIZE * sizeof(char));
+        1:   29:  if (!seq) {
+        1:   29-block  0
+branch  0 taken 0
+branch  1 taken 1
+    #####:   30:    fclose(fp);
+    #####:   31:    return NULL;
+    $$$$$:   31-block  0
+unconditional  0 never executed
+        -:   32:  }
+        -:   33:
+        2:   34:  while (fscanf(fp, "%s", seq) != EOF) {}
+        1:   34-block  0
+unconditional  0 taken 1
+        2:   34-block  1
+branch  1 taken 1
+branch  2 taken 1
+        1:   34-block  2
+unconditional  3 taken 1
+        -:   35:
+        1:   36:  if (fclose(fp) == 0) {
+        1:   36-block  0
+branch  0 taken 1
+branch  1 taken 0
+        1:   37:    return seq;
+        1:   37-block  0
+unconditional  0 taken 1
+        -:   38:  } else {
+    #####:   39:    if (seq) {
+    $$$$$:   39-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   40:      free(seq);
+    #####:   41:    }
+    $$$$$:   41-block  0
+unconditional  0 never executed
+    #####:   42:    return NULL;
+    $$$$$:   42-block  0
+unconditional  0 never executed
+        -:   43:  }
+        -:   44:
+        -:   45:  return seq;
+        1:   46:}
+        1:   46-block  0
+unconditional  0 taken 1
