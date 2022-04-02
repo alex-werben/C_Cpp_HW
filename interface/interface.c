@@ -17,7 +17,7 @@ int call_consistent_alg() {
   int res = consistent_algorithm(seq);
   stop = clock();
 
-  printf("Consistent algorithm work time - %lu\n", (stop - start));
+  // printf("Consistent algorithm work time - %lu\n", (stop - start));
 
   return res;
 }

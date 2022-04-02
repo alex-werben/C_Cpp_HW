@@ -6,7 +6,7 @@
 #include "interface.h"
 
 // Check number of series of different lengths
-int check_occurancies(int arr[], int const n, int const max_length) {
+int check_occurancies(int* arr, int const n, int const max_length) {
   for (int i = 0; i < max_length; ++i) {
     if (i != n - 1) {
       if (arr[n - 1] - arr[i] <= 2) {  // not enough series

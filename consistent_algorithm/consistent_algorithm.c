@@ -19,7 +19,7 @@ int consistent_algorithm(char *seq) {
   int max = 0;
   max = get_max_occurance_length(obj);
 
-  print_info(obj);
+  // print_info(obj);
 
   delete_RLE(obj);
 
@@ -52,9 +52,9 @@ int get_max_occurance_length(RLE *obj) {
     }
   }
 
-  printf("Most frequently occuring length - %d\n", obj->length[index]);
-  printf("It occurs %d times\n", obj->occurancies[index]);
-  printf("Representer - %c\n", obj->representer[index]);
+  // printf("Most frequently occuring length - %d\n", obj->length[index]);
+  // printf("It occurs %d times\n", obj->occurancies[index]);
+  // printf("Representer - %c\n", obj->representer[index]);
   return obj->length[index];
 }
 
